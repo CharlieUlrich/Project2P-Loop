@@ -1,14 +1,12 @@
 Result pRecognizer(){
   int n = 32;
   points = normalizer(points,n);
-  //for(int i = 0; i < 32; i++){
-  //  normd.add(points.get(i));
-  //}
   double score = Double.MAX_VALUE;
   cloud result = null;
   for(cloud template: templates){
     //template.cloud = normalizer(template.cloud,n);
     double d = greedyCloudMatch(points,template.cloud,n);
+    System.out.println(template.name + " " + d);
     if (d < score){
       score = d;
       result = template;
@@ -21,7 +19,7 @@ Result pRecognizer(){
 ArrayList<double[]> normalizer(ArrayList<double[]> pts,int n){
   pts = Resample(pts,n);
   scale(pts);
-  transToOrigin(pts,n);
+  transToOrigin(pts, new double[] {0,0,0});
   return pts;
 }
 

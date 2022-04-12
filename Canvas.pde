@@ -1,7 +1,6 @@
 //Instantiating the arrayList which holds arrays of ints
 //Each array is 1x3 and holds the x,y coordinates and stroke id for each pixel drawn
 ArrayList<double[]> points = new ArrayList<double[]>();
-//ArrayList<double[]> normd = new ArrayList<double[]>();
 int strokeID = 1;
 class cloud {
   String name;
@@ -20,10 +19,11 @@ class cloud {
 Result curr = null;
 ArrayList<cloud> templates = new ArrayList<cloud>();
 
+
 //Function called at the start of the progra, creates the canvas of size 1280x720
 void setup(){
-  ArrayList<double[]> temps = new ArrayList<double[]>();
   size(1280,720);
+  ArrayList<double[]> temps = new ArrayList<double[]>();
 temps.add(new double[] {30,7,1}); temps.add(new double[] {103,7,1});temps.add(new double[] {66,7,2});temps.add(new double[] {66,87,2});
 cloud T = new cloud("T", temps, 0);
 templates.add(T);
@@ -112,9 +112,9 @@ temps.add(new double[] {546,536,2});
 templates.add(new cloud("half-note", temps, 0));
 temps.clear();
 
-  for(cloud template: templates){
-      template.cloud = normalizer(template.cloud,32);
-  }
+for(cloud template: templates){
+    template.cloud = normalizer(template.cloud,32);
+}
 }
 
 //Draw is called each time the screen is refreshed, the default framerate is 60fps
@@ -141,13 +141,6 @@ void draw(){
     //1 at the location
     circle((float)points.get(i)[0],(float)points.get(i)[1], 1.0);
   }
-  //for(int i = 0; i < normd.size(); i++){
-  //  strokeWeight(0);
-  //  //Circle is called passing in the x and y coordinates drawing a circle of radius
-  //  //1 at the location
-  //  color(255,255,255);
-  //  circle((float)normd.get(i)[0]+400,(float)normd.get(i)[1]+400, 50.0);
-  //}
 }
 
 //Whenever the mouse is pressed this function is called
@@ -159,12 +152,15 @@ void mousePressed(){
      points.removeAll(points);
      strokeID = 0;
      curr = null;
-//     normd.removeAll(normd);
+     points.clear();
    }
    else if (mouseX > 1140 && mouseX < 1270 && mouseY > 10 && mouseY < 70){
+     curr = null;
      curr = pRecognizer();
      strokeID = 0; //<>//
      points.removeAll(points);
+     points.clear();
+     System.out.println(points.size());
    }
    else{
    //If it wasn't over the button then a new array of size 2 is created, within it
