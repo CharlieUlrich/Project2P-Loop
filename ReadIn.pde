@@ -5,7 +5,6 @@ void readIn(File dir){
      System.out.println("TRUE");
    for(File file: dir.listFiles()){
      if(!file.isDirectory()){
-       print(file.getPath());
          XML xml = loadXML(file.getPath());
          XML[] child1 = xml.getChildren("Stroke");
          int count = 1;
@@ -22,8 +21,13 @@ void readIn(File dir){
            count+=1;
          //Getting the subject name
          String sub = file.getPath();
-         int index = Integer.parseInt(sub.substring(sub.indexOf("stylus")-3, sub.indexOf("stylus")-1));
+         int index = 0;
+         if(sub.contains("stylus"))
+           index = Integer.parseInt(sub.substring(sub.indexOf("stylus")-3, sub.indexOf("stylus")-1));
+         else
+           index = Integer.parseInt(sub.substring(sub.indexOf("finger")-3, sub.indexOf("finger")-1));
          String n = file.getName().substring(0,file.getName().indexOf(".xml"));
+         println(n);
          //System.out.println("Hello!!!!!!!" + index);
          cloud uni = new cloud(n,shape, index); 
          templates1.add(uni);
