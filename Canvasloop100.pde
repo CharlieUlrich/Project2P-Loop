@@ -1,17 +1,18 @@
-//Instantiating the arrayList which holds arrays of ints
+//Instantiating the arrayList which holds arrays of ints //<>// //<>//
 //Each array is 1x3 and holds the x,y coordinates and stroke id for each pixel drawn
 ArrayList<double[]> points = new ArrayList<double[]>();
-String[] gestures = {"T", "N", "D", "P", "X", "H", "I", "exclamation", "line", "five-point star", "null", "arrowhead", "pitchfork", "six-point star", "asterisk", "half-note" };
+String[] gestures = {"T", "N", "D", "P", "X", "H", "I", "exclamation_point", "line", "five_point_star", "null", "arrowhead", "pitchfork", "six_point_star", "asterisk", "half_note" };
 int strokeID = 1;
 class cloud {
   String name;
   ArrayList<double[]> cloud = new ArrayList<double[]>();
   int sub;
-  //String gesture;
+  String gesture;
   public cloud(String n, ArrayList<double[]> unis, int num) {
     name = n;
     sub = num;
-    //gesture = name.substring(0,name.length()-2);
+    if (name.length() > 17)
+      gesture = name.substring(name.indexOf("slow-")+5,name.length()-3);
     for(int i = 0; i < unis.size(); i++)
       cloud.add(unis.get(i));
   }
@@ -64,7 +65,7 @@ templates.add(new cloud("I", temps, 0));
 temps.clear();
 
 temps.add(new double[] {526,142,1});temps.add(new double[] {526,204,1});temps.add(new double[] {526,221,2});
-templates.add(new cloud("exclamation", temps, 0));
+templates.add(new cloud("exclamation_point", temps, 0));
 temps.clear();
 
 temps.add(new double[] {12,347,1});temps.add(new double[] {119,347,1});
@@ -72,7 +73,7 @@ templates.add(new cloud("line", temps, 0));
 temps.clear();
 
 temps.add(new double[] {177,396,1});temps.add(new double[] {223,299,1});temps.add(new double[] {262,396,1});temps.add(new double[] {168,332,1});temps.add(new double[] {278,332,1});temps.add(new double[] {184,397,1});
-templates.add(new cloud("five-point star", temps, 0));
+templates.add(new cloud("five_point_star", temps, 0));
 temps.clear();
 
 temps.add(new double[] {382,310,1});temps.add(new double[] {377,308,1});temps.add(new double[] {373,307,1});temps.add(new double[] {366,307,1});temps.add(new double[] {360,310,1});temps.add(new double[] {356,313,1});
@@ -98,7 +99,7 @@ temps.clear();
 
 temps.add(new double[] {177,554,1});temps.add(new double[] {223,476,1});temps.add(new double[] {268,554,1});temps.add(new double[] {183,554,1});temps.add(new double[] {177,490,2});temps.add(new double[] {223,568,2});
 temps.add(new double[] {268,490,2});temps.add(new double[] {183,490,2});
-templates.add(new cloud("six-point star", temps, 0));
+templates.add(new cloud("six_point_star", temps, 0));
 temps.clear();
 
 temps.add(new double[] {325,499,1});temps.add(new double[] {417,557,1});temps.add(new double[] {417,499,2});temps.add(new double[] {325,557,2});temps.add(new double[] {371,486,3});temps.add(new double[] {371,571,3});
@@ -110,12 +111,21 @@ temps.add(new double[] {524,530,2});temps.add(new double[] {520,532,2});temps.ad
 temps.add(new double[] {506,554,2});temps.add(new double[] {509,558,2});temps.add(new double[] {512,561,2});temps.add(new double[] {517,564,2});temps.add(new double[] {521,564,2});temps.add(new double[] {527,563,2});
 temps.add(new double[] {531,560,2});temps.add(new double[] {535,557,2});temps.add(new double[] {538,553,2});temps.add(new double[] {542,548,2});temps.add(new double[] {544,544,2});temps.add(new double[] {546,540,2});
 temps.add(new double[] {546,536,2});
-templates.add(new cloud("half-note", temps, 0));
+templates.add(new cloud("half_note", temps, 0));
 temps.clear();
 
-for(cloud template: templates){
-    template.cloud = normalizer(template.cloud,32);
+//for(cloud template: templates){
+    //template.cloud = normalizer(template.cloud,32);
+String path = dataPath("");
+File dir = new File(path);
+readIn(dir);
+for(int i = 0; i < templates1.size();i++) {
+  templates1.get(i).cloud = normalizer(templates1.get(i).cloud,32);
+  //println(templates1.get(i).cloud.size(), i, templates1.get(i).name);
 }
+println("hello");
+random100();
+System.out.println("\n\n\nHellO\n\n");
 }
 
 //Draw is called each time the screen is refreshed, the default framerate is 60fps

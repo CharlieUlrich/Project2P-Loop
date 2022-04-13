@@ -43,7 +43,7 @@ void random100() {
         for (int g = 0; g < gestures.length; g++) {
           ArrayList<cloud> gests = new ArrayList<cloud>();
           for (int j = 0; j < temps.size(); j++) {
-            if (temps.get(j).name.equals(gestures[g])) {
+            if (temps.get(j).gesture.equals(gestures[g])) {
               gests.add(temps.get(j)); 
             }
           }
@@ -59,12 +59,14 @@ void random100() {
           int[] indices = new Random().ints(0, 9).distinct().limit(ex).toArray();
           for (int j = 0; j < indices.length; j++) {
             examples.add(gests.get(indices[j]));
+            //println(examples.get(j).gesture);
             tSetContents += str(user) + "-" + gests.get(indices[j]).name + ", ";
           }
         }
         tSetContents += "}";
         
         for (int x = 0; x < candidates.size(); x++) {
+          println(candidates.get(x).cloud.size() + "  " + examples.size()); //<>//
           Result ok = pRecognizer(candidates.get(x).cloud, examples);
           int correct = 0;
           if (ok.res.name.substring(0, ok.res.name.length()-2).equals(gestures[x])) {
