@@ -8,9 +8,9 @@ void readIn(File dir){
          XML xml = loadXML(file.getPath());
          XML[] child1 = xml.getChildren("Stroke");
          int count = 1;
+         ArrayList<double[]> shape = new ArrayList<double[]>();
          for(XML j: child1){
            XML[] childses = j.getChildren("Point");
-           ArrayList<double[]> shape = new ArrayList<double[]>();
            for(int i = 0; i < childses.length; i++){
               double x = Double.parseDouble(childses[i].getString("X"));
               double y = Double.parseDouble(childses[i].getString("Y"));
@@ -19,6 +19,7 @@ void readIn(File dir){
               shape.add(point);
            }
            count+=1;
+         }
          //Getting the subject name
          String sub = file.getPath();
          int index = 0;
@@ -31,7 +32,7 @@ void readIn(File dir){
          //System.out.println("Hello!!!!!!!" + index);
          cloud uni = new cloud(n,shape, index); 
          templates1.add(uni);
-         }
+         
      }
      else{
        if(!file.getName().equals("fast") && !file.getName().equals("medium") && !file.getName().equals("s01 (pilot)")){
