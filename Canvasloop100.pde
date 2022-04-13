@@ -1,6 +1,7 @@
 //Instantiating the arrayList which holds arrays of ints
 //Each array is 1x3 and holds the x,y coordinates and stroke id for each pixel drawn
 ArrayList<double[]> points = new ArrayList<double[]>();
+String[] gestures = {"T", "N", "D", "P", "X", "H", "I", "exclamation", "line", "five-point star", "null", "arrowhead", "pitchfork", "six-point star", "asterisk", "half-note" };
 int strokeID = 1;
 class cloud {
   String name;
@@ -18,7 +19,7 @@ class cloud {
 
 Result curr = null;
 ArrayList<cloud> templates = new ArrayList<cloud>();
-
+ArrayList<cloud> templates1 = new ArrayList<cloud>(); //read in
 
 //Function called at the start of the progra, creates the canvas of size 1280x720
 void setup(){
@@ -156,7 +157,7 @@ void mousePressed(){
    }
    else if (mouseX > 195 && mouseX < 245 && mouseY > 5 && mouseY < 35){
      curr = null;
-     curr = pRecognizer();
+     curr = pRecognizer(points, templates);
      strokeID = 0; //<>//
      points.removeAll(points);
      points.clear();
