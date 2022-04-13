@@ -7,11 +7,11 @@ class cloud {
   String name;
   ArrayList<double[]> cloud = new ArrayList<double[]>();
   int sub;
-  //String gesture;
+  String gesture;
   public cloud(String n, ArrayList<double[]> unis, int num) {
     name = n;
     sub = num;
-    //gesture = name.substring(0,name.length()-2);
+    gesture = name.substring(name.indexOf("slow-"+5,name.length()-2));
     for(int i = 0; i < unis.size(); i++)
       cloud.add(unis.get(i));
   }
