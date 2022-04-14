@@ -24,16 +24,14 @@ ArrayList<cloud> templates1 = new ArrayList<cloud>(); //read in
 
 //Function called at the start of the progra, creates the canvas of size 1280x720
 void setup(){
-  size(250,250);
+  size(700,700);
   ArrayList<double[]> temps = new ArrayList<double[]>();
 temps.add(new double[] {30,7,1}); temps.add(new double[] {103,7,1});temps.add(new double[] {66,7,2});temps.add(new double[] {66,87,2});
-cloud T = new cloud("T", temps, 0);
-templates.add(T);
+templates.add(new cloud("T", temps, 0));
 temps.clear();
 
 temps.add(new double[] {177,92,1});temps.add(new double[] {177,2,1});temps.add(new double[] {182,1,2});temps.add(new double[] {246,95,2});temps.add(new double[] {247,87,3});temps.add(new double[] {247,1,3});
-cloud N = new cloud("N", temps, 0);
-templates.add(N);
+templates.add(new cloud("N", temps, 0));
 temps.clear();
 
 temps.add(new double[] {345,9,1});temps.add(new double[] {345,87,1});temps.add(new double[] {351,8,2});temps.add(new double[] {363,8,2});temps.add(new double[] {372,9,2});temps.add(new double[] {380,11,2});
@@ -41,8 +39,7 @@ temps.add(new double[] {386,14,2});temps.add(new double[] {391,17,2});temps.add(
 temps.add(new double[] {400,50,2});temps.add(new double[] {400,56,2});temps.add(new double[] {399,61,2});temps.add(new double[] {397,66,2});temps.add(new double[] {394,70,2});temps.add(new double[] {391,74,2});
 temps.add(new double[] {386,78,2});temps.add(new double[] {382,81,2});temps.add(new double[] {377,83,2});temps.add(new double[] {372,85,2});temps.add(new double[] {367,86,2});temps.add(new double[] {360,87,2});
 temps.add(new double[] {355,87,2});temps.add(new double[] {349,86,2});
-cloud D = new cloud("D", temps, 0);
-templates.add(D);
+templates.add(new cloud("D", temps, 0));
 temps.clear();
 
 temps.add(new double[] {507,8,1});temps.add(new double[] {507,87,1});temps.add(new double[] {513,7,2});temps.add(new double[] {528,7,2});temps.add(new double[] {537,8,2});temps.add(new double[] {544,10,2});
@@ -114,17 +111,17 @@ temps.add(new double[] {546,536,2});
 templates.add(new cloud("half_note", temps, 0));
 temps.clear();
 
-//for(cloud template: templates){
-    //template.cloud = normalizer(template.cloud,32);
+for(cloud template: templates)
+    template.cloud = normalizer(template.cloud,32);
 String path = dataPath("");
 File dir = new File(path);
-readIn(dir);
+//readIn(dir);
 for(int i = 0; i < templates1.size();i++) {
   templates1.get(i).cloud = normalizer(templates1.get(i).cloud,32);
   //println(templates1.get(i).cloud.size(), i, templates1.get(i).name);
 }
 println("hello");
-random100();
+//random100();
 System.out.println("\n\n\nHellO\n\n");
 }
 
@@ -134,14 +131,14 @@ void draw(){
   //Sets the background of the window / canvas to white
   background(255);
   //Calls the draw button function creating a button that clears the canvas
-  drawButton(5, 5, 40, 30, "Clear");
-  drawButton(195, 5, 50, 30, "Recognize");
+  drawButton(5, 5, 90, 50, "Clear");
+  drawButton(605, 5, 90, 50, "Recognize");
   String recog = "";
   if(curr!=null)
     recog="Shape Drawn: " + curr.res.name + " Accuracy: " + curr.score; //<>//
   else
     recog = "Shape Drawn: ";  
-  drawButton(10,220,230,30,recog);
+  drawButton(10,660,680,30,recog);
   //Changes the color being drawn to green
   fill(0,255,0);
   //Loop that goes through the arrayList of pixels drawing a circle with a 1 pixel
@@ -158,19 +155,19 @@ void draw(){
 void mousePressed(){ 
    //If statement check if the coordinates of the mouse were over the clear button 
    //When pressed
-   if(mouseX >5 && mouseX < 45 && mouseY > 5 && mouseY < 35){
+   if(mouseX > 5 && mouseX < 95 && mouseY > 5 && mouseY < 55){
      //If it was over the button it empties the arrayList
      points.removeAll(points);
      strokeID = 0;
      curr = null;
-     points.clear();
+     //points.clear();
    }
-   else if (mouseX > 195 && mouseX < 245 && mouseY > 5 && mouseY < 35){
+   else if (mouseX > 605 && mouseX < 695 && mouseY > 5 && mouseY < 55){
      curr = null;
      curr = pRecognizer(points, templates);
      strokeID = 0; //<>//
      points.removeAll(points);
-     points.clear();
+     //points.clear();
      System.out.println(points.size());
    }
    else{
@@ -219,7 +216,7 @@ void drawButton(int x, int y, int wid, int hei, String text) {
   //This sets the mode for the text to be centered on the coordinates
   textAlign(CENTER, CENTER);
   //Sets the text size 
-  textSize(10);
+  textSize(18);
   //Sets the color of the text to black
   fill(0);
   //Draws the text to the window with the passed in text, x, y, width and height
