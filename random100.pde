@@ -27,14 +27,14 @@ void random100() {
   int arr[] = {10,11,12,22,28,41,58,61,66,68,71,73,75,77,85,88,94,95,98,99};
   
   
-  for (int user = 0; user < arr.length; user++) { // Subject
+  for (int user = 0; user < 1; user++) { // Subject
     ArrayList<cloud> temps = new ArrayList<cloud>();
     for (int j = 0; j < templates1.size(); j++) {
       if (templates1.get(j).sub == arr[user]) {
         temps.add(templates1.get(j));
       }
     }
-    for (int ex = 1; ex <= 19; ex++) { 
+    for (int ex = 1; ex <= 9; ex++) { 
       for (int i = 1; i <= 100; i++) {
         ArrayList<cloud> examples = new ArrayList<cloud>();
         ArrayList<cloud> candidates = new ArrayList<cloud>();
@@ -66,10 +66,10 @@ void random100() {
         tSetContents += "}";
         
         for (int x = 0; x < candidates.size(); x++) {
-          println(candidates.get(x).cloud.size() + "  " + examples.size()); //<>//
+          //println(candidates.get(x).cloud.size() + "  " + examples.size()); //<>//
           Result ok = pRecognizer(candidates.get(x).cloud, examples);
           int correct = 0;
-          if (ok.res.name.substring(0, ok.res.name.length()-2).equals(gestures[x])) {
+          if (ok.res.gesture.equals(gestures[x])) {
             correct = 1;
             avgAccuracy += 1;
           }

@@ -4,11 +4,11 @@ Result pRecognizer(ArrayList<double[]> pts, ArrayList<cloud> templs){
   double score = Double.MAX_VALUE;
   cloud result = null;
   for(cloud template: templs){
-    println("yo");
-    template.cloud = normalizer(template.cloud,n);
-    println(pts.size(), template.cloud.size(), template.name);
+    //println("yo");
+    //template.cloud = normalizer(template.cloud,n);
+    //println(pts.size(), template.cloud.size(), template.name);
     double d = greedyCloudMatch(pts,template.cloud,n);
-    System.out.println(template.name + " " + d);
+    //System.out.println(template.name + " " + d);
     if (d < score){
       score = d;
       result = template;
